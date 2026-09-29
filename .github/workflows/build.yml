@@ -52,7 +52,8 @@ jobs:
           cd terraform
           terraform fmt
           terraform init
-          terraform apply -auto-approve
+          # terraform apply -auto-approve
+          terraform destroy -auto-approve
 
   deploy-app:
     name: deploy-app
@@ -78,4 +79,5 @@ jobs:
           cd terraform-app
           terraform fmt
           terraform init
-          terraform apply -auto-approve
+          # terraform apply -auto-approve
+          terraform destroy -auto-approve
