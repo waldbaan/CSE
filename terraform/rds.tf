@@ -9,6 +9,7 @@ terraform {
     bucket = "999tfbackupbucket999  "
     key = "terraform.tfstate"
     region = "us-east-1"
+    encrypt        = true
 }
 }
   }

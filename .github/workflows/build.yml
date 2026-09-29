@@ -25,4 +25,5 @@ jobs:
         run: |
             cd terraform 
             terraform fmt
-            terraform init 
+            terraform init
+            terraform plan
