@@ -4,6 +4,13 @@ terraform {
       source  = "hashicorp/aws"
       version = "3.66.0"
     }
+  terraform {
+    backend "s3" {
+    bucket = "999tfbackupbucket999  "
+    key = "terraform.tfstate"
+    region = "us-east-1"
+}
+}
   }
 }
 provider "aws" {
