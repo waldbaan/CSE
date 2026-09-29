@@ -5,6 +5,7 @@ on: push
 jobs:
   plan:
     name: Terraform plan
+    # runner draait op de laatste versie van ubuntu met node.js 26
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -14,6 +15,7 @@ jobs:
           node-version: '26'
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+      # Logt in bij AWS met de credentials die in de secrets staan
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -21,6 +23,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{ secrets.AWS_REGION }}
+      # Initialiseert terraform en plant het project
       - name: Initialise project and view terraform plan
         run: |
             cd terraform 
@@ -29,9 +32,13 @@ jobs:
             terraform plan
 
   deploy-rds:
+    # runner draait op de laatste versie van ubuntu met node.js 26
     name: deploy-rds
-    # needs: plan
-    needs: deploy-app
+    # needs kan worden omgedraait, zodat bij het bouwen eerst de rds en daarna de app aan de berut is, en bij verijderen andersom.
+    # Needs: plan: bij aanmaken
+    needs: plan
+    # needs deploy-app: bij verwijderen
+    # needs: deploy-app
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -48,18 +55,24 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{ secrets.AWS_REGION }}
+     # Initialiseert terraform en deployt de infra
       - name: deploy infra with terraform
         run: |
           cd terraform
           terraform fmt
           terraform init
+          # afhankelijk van welke wordt gekozen wordt de infra gemaakt of verwijderd.
           # terraform apply -auto-approve
           terraform destroy -auto-approve
 
+
+# is hetzelfde als de bovenste, deze maakt de app aan
   deploy-app:
     name: deploy-app
-    # needs: deploy-rds
-    needs: plan
+    # needs: deploy-rds: bij aanmaken
+    needs: deploy-rds
+    # needs: plan: bij verwijderen
+    # needs: plan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
