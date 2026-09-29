@@ -50,7 +50,6 @@ jobs:
       - name: deploy infra with terraform
         run: |
           cd terraform
-          cd qa
           terraform fmt
           terraform init
           terraform apply
