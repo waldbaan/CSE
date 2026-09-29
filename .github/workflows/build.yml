@@ -62,8 +62,8 @@ jobs:
           terraform fmt
           terraform init
           # afhankelijk van welke wordt gekozen wordt de infra gemaakt of verwijderd.
-          # terraform apply -auto-approve
-          terraform destroy -auto-approve
+          terraform apply -auto-approve
+          # terraform destroy -auto-approve
 
 
 # is hetzelfde als de bovenste, deze maakt de app aan
@@ -94,5 +94,5 @@ jobs:
           cd terraform-app
           terraform fmt
           terraform init
-          # terraform apply -auto-approve
-          terraform destroy -auto-approve
+          terraform apply -auto-approve
+          # terraform destroy -auto-approve
