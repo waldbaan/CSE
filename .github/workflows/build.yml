@@ -1,14 +1,6 @@
 name: Deploy applicatie
 
-on:
-  workflow_dispatch:
-  push:
-    branches: [main]
-    paths: ["terraform/**"]
-
-  pull_request:
-    branches: [main]
-    paths: ["terraform/**"]
+on: push
 #noot
 jobs:
   plan:
