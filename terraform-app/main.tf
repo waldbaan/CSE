@@ -44,7 +44,7 @@ resource "aws_internet_gateway" "saxit_gw" {
 #Create peering with db VPC
 resource "aws_vpc_peering_connection" "dbpeer" {
   vpc_id        = aws_vpc.saxit_vpc.id
-  peer_vpc_id   = "vpc-09ddd325683eabebf"
+  peer_vpc_id   = "vpc-0800a6dfa78358327" # PAS DEZE AAN AAN DE ACUTELE VPC
   auto_accept   = true
 }
 ###################################################
@@ -66,7 +66,7 @@ resource "aws_route_table" "pres-route" {
 ###################################################
 # Create routing table for db VPC
 resource "aws_route" "dbroute" {
-  route_table_id         = "rtb-02d97667482ee7006"  # Existing route table ID db vpc
+  route_table_id         = "rtb-0d2b98afbfd291909"  # Existing route table ID db vpc PAS DEZE NAAR ACTUELE WAARDES AAN
   destination_cidr_block = "10.0.0.0/16"
   gateway_id             = aws_vpc_peering_connection.dbpeer.id # peering id
 }
