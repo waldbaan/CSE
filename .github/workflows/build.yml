@@ -1,7 +1,7 @@
 name: Deploy applicatie
 
 on: push
-
+#noot
 jobs:
   plan:
     name: Terraform plan
