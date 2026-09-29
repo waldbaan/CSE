@@ -1,7 +1,7 @@
 name: Deploy applicatie
 
 on: push
-#noot
+
 jobs:
   plan:
     name: Terraform plan
@@ -30,7 +30,8 @@ jobs:
 
   deploy-rds:
     name: deploy-rds
-    needs: plan
+    # needs: plan
+    needs: deploy-rds
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -57,7 +58,8 @@ jobs:
 
   deploy-app:
     name: deploy-app
-    needs: deploy-rds
+    # needs: deploy-rds
+    needs: plan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
