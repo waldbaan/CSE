@@ -25,6 +25,8 @@ resource "aws_vpc" "saxit_vpc_db" {
 
   tags = {
     Name  = "saxit_vpc_db"
+    Environment = "PoC"
+  
   }
 }
 ###################################################

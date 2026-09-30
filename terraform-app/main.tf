@@ -29,6 +29,11 @@ variable "db_vpc_id" {
 
 data "aws_vpc" "saxit_vpc_db" {
   id = var.db_vpc_id
+    tags = {
+    Name  = "saxit_vpc_db"
+    Environment = "PoC"
+  
+  }
 }
 
 ###################################################
