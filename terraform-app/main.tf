@@ -21,6 +21,11 @@ provider "aws" {
 locals {
  sshkey  = "CSEC_key"
 }
+
+
+data "aws_vpc" "saxit_vpc_db" {
+
+}
 ###################################################
 #Create a standard VPC
 resource "aws_vpc" "saxit_vpc" {
@@ -44,7 +49,7 @@ resource "aws_internet_gateway" "saxit_gw" {
 #Create peering with db VPC
 resource "aws_vpc_peering_connection" "dbpeer" {
   vpc_id        = aws_vpc.saxit_vpc.id
-  peer_vpc_id   = "vpc-09295056af06fc6c2" # PAS DEZE AAN AAN DE ACUTELE VPC
+  peer_vpc_id   = data.aws_vpc.saxit_vpc_db.id # PAS DEZE AAN AAN DE ACUTELE VPC
   auto_accept   = true
 }
 ###################################################
