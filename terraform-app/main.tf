@@ -28,7 +28,7 @@ variable "db_vpc_id" {
 }
 
 data "aws_vpc" "saxit_vpc_db" {
-  id = var.db_vpc_idvpc_id
+  id = var.db_vpc_id
 }
 
 ###################################################
