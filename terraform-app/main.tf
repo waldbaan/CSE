@@ -40,6 +40,7 @@ data "aws_vpc" "saxit_vpc_db" {
   }
 }
 data "aws_db_instance" "cloudsecdb"{
+  db_instance_identifier = "cloudsecdb"
   endpoint = var.db_endpoint
 }
 
