@@ -44,7 +44,7 @@ resource "aws_internet_gateway" "saxit_gw" {
 #Create peering with db VPC
 resource "aws_vpc_peering_connection" "dbpeer" {
   vpc_id        = aws_vpc.saxit_vpc.id
-  peer_vpc_id   = "vpc-0af30460f6c958be6" # PAS DEZE AAN AAN DE ACUTELE VPC
+  peer_vpc_id   = "vpc-09295056af06fc6c2" # PAS DEZE AAN AAN DE ACUTELE VPC
   auto_accept   = true
 }
 ###################################################
@@ -66,7 +66,7 @@ resource "aws_route_table" "pres-route" {
 ###################################################
 # Create routing table for db VPC
 resource "aws_route" "dbroute" {
-  route_table_id         = "rtb-09cda22d924132953"  # Existing route table ID db vpc PAS DEZE NAAR ACTUELE WAARDES AAN
+  route_table_id         = "rtb-02243d09b77eb0763"  # Existing route table ID db vpc PAS DEZE NAAR ACTUELE WAARDES AAN
   destination_cidr_block = "10.0.0.0/16"
   gateway_id             = aws_vpc_peering_connection.dbpeer.id # peering id
 }
@@ -308,7 +308,7 @@ vpc_security_group_ids = [aws_security_group.applicationtier_sg.id]
   git clone https://github.com/intro-infra/cloudsec.git
   cd /cloudsec/backend
   sudo docker build -t backend .
-  sudo docker run --restart always -e SPRING_DATASOURCE_URL=jdbc:terraform-20260909115626074200000001.cqyjxpwjbdff.us-east-1.rds.amazonaws.com/cloudsecdb -e SPRING_DATASOURCE_USERNAME=admin -e SPRING_DATASOURCE_PASSWORD=password123 -p 8080:8080 -d backend
+  sudo docker run --restart always -e SPRING_DATASOURCE_URL=jdbc:terraform-20260930113411319200000001.cqyjxpwjbdff.us-east-1.rds.amazonaws.com/cloudsecdb -e SPRING_DATASOURCE_USERNAME=admin -e SPRING_DATASOURCE_PASSWORD=password123 -p 8080:8080 -d backend
   EOF
   key_name = local.sshkey
  tags = {
@@ -341,7 +341,7 @@ vpc_security_group_ids = [aws_security_group.applicationtier_sg.id]
   git clone https://github.com/intro-infra/cloudsec.git
   cd /cloudsec/backend
   sudo docker build -t backend .
-  sudo docker run --restart always -e SPRING_DATASOURCE_URL=jdbc:mysql://terraform-20260909115626074200000001.cqyjxpwjbdff.us-east-1.rds.amazonaws.com/cloudsecdb -e SPRING_DATASOURCE_USERNAME=admin -e SPRING_DATASOURCE_PASSWORD=password123 -p 8080:8080 -d backend
+  sudo docker run --restart always -e SPRING_DATASOURCE_URL=jdbc:mysql://terraform-20260930113411319200000001.cqyjxpwjbdff.us-east-1.rds.amazonaws.com/cloudsecdb -e SPRING_DATASOURCE_USERNAME=admin -e SPRING_DATASOURCE_PASSWORD=password123 -p 8080:8080 -d backend
   EOF
   key_name = local.sshkey
  tags = {
