@@ -22,9 +22,11 @@ locals {
  sshkey  = "CSEC_key"
 }
 
+variable "vpc_id" {}
+
 
 data "aws_vpc" "saxit_vpc_db" {
-
+  id = var.vpc_id
 }
 ###################################################
 #Create a standard VPC
