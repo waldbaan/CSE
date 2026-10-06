@@ -39,14 +39,6 @@ data "aws_vpc" "saxit_vpc_db" {
   
   }
 }
-data "aws_db_instance" "cloudsecdb"{
-  endpoint = var.db_endpoint
-      tags = {
-    Name  = "clousecdb"
-    Environment = "PoC"
-  
-  }
-}
 
 ###################################################
 #Create a standard VPC
@@ -71,7 +63,7 @@ resource "aws_internet_gateway" "saxit_gw" {
 #Create peering with db VPC
 resource "aws_vpc_peering_connection" "dbpeer" {
   vpc_id        = aws_vpc.saxit_vpc.id
-  peer_vpc_id   = data.aws_vpc.saxit_vpc_db.id # PAS DEZE AAN AAN DE ACUTELE VPC
+  peer_vpc_id   = data.aws_vpc.saxit_vpc_db.id # PAS DEZE AAN AAN DE ACUTELE VPC gebeurd nu automatisch
   auto_accept   = true
 }
 ###################################################
