@@ -231,7 +231,7 @@ resource "aws_route_table_association" "applicationtier2" {
 
 # bastion host
 # Create an EC2 #1 instance as frontend
-resource "aws_instance" "web01" {
+resource "aws_instance" "Bastionhost01" {
   ami           = "ami-084568db4383264d4" # Amazon Ubuntu Linux 2 AMI
   instance_type = "t2.micro"              # Adjust instance type as needed
   subnet_id = aws_subnet.saxit_subnet_presentation_1.id
