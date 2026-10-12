@@ -96,13 +96,13 @@ resource "aws_security_group" "presentationtier_sg" {
  description = "Allow SSH and HTTP to web servers"
  vpc_id      = aws_vpc.saxit_vpc.id
 
-# ingress {
-#    description = "SSH ingress"
-#    from_port   = 22
-#    to_port     = 22
-#    protocol    = "tcp"
-#    cidr_blocks = ["0.0.0.0/0"]
-#  }
+ingress {
+   description = "SSH ingress"
+   from_port   = 22
+   to_port     = 22
+   protocol    = "tcp"
+   cidr_blocks = ["10.0.0.0/16"]
+ }
 ingress {
    description = "HTTP ingress"
    from_port   = 80
@@ -162,6 +162,37 @@ egress {
    cidr_blocks = ["0.0.0.0/0"]
  }
 }
+
+###################################################
+# Create security group for bastionhost
+resource "aws_security_group" "bastionhost_sg" {
+ name        = "bastionhost_sg"
+ description = "Allow SSH 8080 to app servers"
+ vpc_id      = aws_vpc.saxit_vpc.id
+
+ingress {
+   description = "SSH ingress"
+   from_port   = 22
+   to_port     = 22
+   protocol    = "tcp"
+   cidr_blocks = ["0.0.0.0/0"]
+ }
+
+ ingress {
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port   = 8
+  to_port     = 0
+  protocol    = "icmp"
+  description = "Allow ping"
+}
+egress {
+   from_port   = 0
+   to_port     = 0
+   protocol    = "-1"
+   cidr_blocks = ["0.0.0.0/0"]
+ }
+}
+
 ###################################################
 #Create different presentationtier subnets spread over 2 different availability zones 
 resource "aws_subnet" "saxit_subnet_presentation_1" {
