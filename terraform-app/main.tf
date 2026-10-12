@@ -124,6 +124,9 @@ egress {
    cidr_blocks = ["0.0.0.0/0"]
  }
 }
+#Maak een nieuwe SG aan voor de bastion host
+
+
 ###################################################
 # Create security group for applicationtier
 resource "aws_security_group" "applicationtier_sg" {
@@ -225,6 +228,20 @@ resource "aws_route_table_association" "applicationtier2" {
   route_table_id = aws_route_table.pres-route.id
 }
 
+
+# bastion host
+# Create an EC2 #1 instance as frontend
+resource "aws_instance" "web01" {
+  ami           = "ami-084568db4383264d4" # Amazon Ubuntu Linux 2 AMI
+  instance_type = "t2.micro"              # Adjust instance type as needed
+  subnet_id = aws_subnet.saxit_subnet_presentation_1.id
+  associate_public_ip_address = true
+  vpc_security_group_ids = [aws_security_group.presentationtier_sg.id]
+  key_name = local.sshkey
+ tags = {
+     Name = "web01"
+  }
+}
 
 ##################################################
 # Use key for SSH
