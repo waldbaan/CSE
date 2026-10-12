@@ -239,7 +239,7 @@ resource "aws_instance" "Bastionhost01" {
   vpc_security_group_ids = [aws_security_group.presentationtier_sg.id]
   key_name = local.sshkey
  tags = {
-     Name = "web01"
+     Name = "Bastionhost01"
   }
 }
 
