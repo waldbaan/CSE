@@ -36,7 +36,7 @@ jobs:
     # name: deploy-rds
     # needs kan worden omgedraait, zodat bij het bouwen eerst de rds en daarna de app aan de berut is, en bij verijderen andersom.
     # bij aanmaken
-    needs: plan
+    # needs: plan
     # bij verwijderen
     # needs: deploy-app
     runs-on: ubuntu-latest
