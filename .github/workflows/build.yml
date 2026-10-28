@@ -38,7 +38,7 @@ jobs:
     # bij aanmaken
     needs: plan
     # bij verwijderen
-    needs: deploy-app
+    # needs: deploy-app
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
