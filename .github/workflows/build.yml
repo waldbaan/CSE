@@ -3,7 +3,7 @@ name: Deploy applicatie
 on: push
 
 jobs:
-  plan:
+  # plan:
     # name: Terraform plan
     # # runner draait op de laatste versie van ubuntu met node.js 26
     # runs-on: ubuntu-latest
