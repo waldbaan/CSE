@@ -85,7 +85,7 @@ resource "aws_route_table" "pres-route" {
 ###################################################
 # Create routing table for db VPC
 resource "aws_route" "dbroute" {
-  route_table_id         = "rtb-001f77626b7a67a5b"  # Existing route table ID db vpc PAS DEZE NAAR ACTUELE WAARDES AAN
+  route_table_id         = "rtb-0e6addfed820a08e0"  # Existing route table ID db vpc PAS DEZE NAAR ACTUELE WAARDES AAN
   destination_cidr_block = "10.0.0.0/16"
   gateway_id             = aws_vpc_peering_connection.dbpeer.id # peering id
 }
@@ -377,7 +377,7 @@ vpc_security_group_ids = [aws_security_group.applicationtier_sg.id]
   git clone https://github.com/intro-infra/cloudsec.git
   cd /cloudsec/backend
   sudo docker build -t backend .
-  sudo docker run --restart always -e SPRING_DATASOURCE_URL=jdbc:mysql://terraform-20261028133134862900000001.cqyjxpwjbdff.us-east-1.rds.amazonaws.com/cloudsecdb -e SPRING_DATASOURCE_USERNAME=admin -e SPRING_DATASOURCE_PASSWORD=password123 -p 8080:8080 -d backend
+  sudo docker run --restart always -e SPRING_DATASOURCE_URL=jdbc:mysql://terraform-20261028175452096000000001.cqyjxpwjbdff.us-east-1.rds.amazonaws.com/cloudsecdb -e SPRING_DATASOURCE_USERNAME=admin -e SPRING_DATASOURCE_PASSWORD=password123 -p 8080:8080 -d backend
   EOF
   key_name = local.sshkey
  tags = {
@@ -411,7 +411,7 @@ vpc_security_group_ids = [aws_security_group.applicationtier_sg.id]
   git clone https://github.com/intro-infra/cloudsec.git
   cd /cloudsec/backend
   sudo docker build -t backend .
-  sudo docker run --restart always -e SPRING_DATASOURCE_URL=jdbc:mysql://terraform-20261028133134862900000001.cqyjxpwjbdff.us-east-1.rds.amazonaws.com/cloudsecdb -e SPRING_DATASOURCE_USERNAME=admin -e SPRING_DATASOURCE_PASSWORD=password123 -p 8080:8080 -d backend
+  sudo docker run --restart always -e SPRING_DATASOURCE_URL=jdbc:mysql://terraform-20261028175452096000000001.cqyjxpwjbdff.us-east-1.rds.amazonaws.com/cloudsecdb -e SPRING_DATASOURCE_USERNAME=admin -e SPRING_DATASOURCE_PASSWORD=password123 -p 8080:8080 -d backend
   EOF
   key_name = local.sshkey
  tags = {
